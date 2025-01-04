@@ -136,7 +136,9 @@ __forceinline void _memcpy(t dest, t2 src, unsigned long long size)
     if (!dest || !src || size <= 0)
         return;
 
-    memcpy((char*)dest, (char*)src, size);
+    __movsb((PBYTE)dest, (BYTE*)src, (SIZE_T)size);
+
+  //  memcpy((char*)dest, (char*)src, size);
 }
 
 template <class t = void*>

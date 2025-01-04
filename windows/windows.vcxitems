@@ -22,6 +22,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)encryption\enc_string.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)filesystem\filesystem.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)global.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)io\json.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)memory\memory.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)networking\networking.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)networking\net_encrypt.h" />
@@ -38,6 +39,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)thirdparty\curl\typecheck-gcc.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)thirdparty\curl\urlapi.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)thirdparty\lazy_importer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)threading\atomic.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)threading\threading.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)typedefs.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)winapi\winapi_structs.h" />
@@ -46,6 +48,7 @@
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)dl_windows.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)filesystem\filesystem.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)io\json.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)memory\memory.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)networking\networking.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)networking\net_encrypt.cpp" />

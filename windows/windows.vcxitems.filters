@@ -38,6 +38,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)networking\net_encrypt.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)pdbparser\md5.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)pdbparser\pdbparser.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)io\json.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)threading\atomic.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)winapi\wrapper.cpp">
@@ -54,5 +56,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)networking\net_encrypt.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)pdbparser\md5.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)pdbparser\pdbparser.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)io\json.cpp" />
   </ItemGroup>
 </Project>

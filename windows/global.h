@@ -11,7 +11,9 @@
 #include "networking/networking.h"
 #include "networking/net_encrypt.h"
 #include "pdbparser/pdbparser.h"
-
+#include "threading/threading.h"
+#include "threading/atomic.h"
+#include "io/json.h"
 
 
 extern int _dl_windows_launch();
