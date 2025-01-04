@@ -22,6 +22,10 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)encryption\enc_string.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)filesystem\filesystem.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)global.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)hooking\minhook\hde\hde64.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)hooking\minhook\hde\pstdint.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)hooking\minhook\hde\table64.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)hooking\minhook\minhook.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)io\json.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)memory\memory.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)networking\networking.h" />
@@ -48,6 +52,10 @@
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)dl_windows.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)filesystem\filesystem.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)hooking\minhook\buffer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)hooking\minhook\hde\hde64.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)hooking\minhook\hook.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)hooking\minhook\trampoline.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)io\json.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)memory\memory.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)networking\networking.cpp" />

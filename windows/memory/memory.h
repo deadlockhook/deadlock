@@ -72,6 +72,12 @@ namespace memory
 		return 	execute_call<void*>(windows::api::kernel32::VirtualAlloc, (LPVOID)nullptr, size.get_decrypted(), AllocationType.get_decrypted(), Protection.get_decrypted());
 	}
 
+	__forceinline _bool_enc query_virtual_memory(_pvoid_enc address, encryption::encrypted_block<MEMORY_BASIC_INFORMATION>& out) {
+		MEMORY_BASIC_INFORMATION mbi;
+		_bool_enc ret = execute_call<BOOL>(windows::api::kernel32::VirtualQuery, address.get_decrypted(), &mbi, sizeof(mbi));
+		out = mbi;
+		return ret;
+	}
 	__forceinline _bool_enc _virtual_protect(_pvoid_enc base, _ulonglong_enc size, _uint_enc Protection, PDWORD old_protection) {
 		return 	execute_call<BOOL>(windows::api::kernel32::VirtualProtect, (LPVOID)base.get_decrypted(), (SIZE_T)size.get_decrypted(), (DWORD)Protection.get_decrypted(), old_protection);
 	}

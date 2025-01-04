@@ -14,6 +14,7 @@
 #include "threading/threading.h"
 #include "threading/atomic.h"
 #include "io/json.h"
+#include "hooking/minhook/minhook.h"
 
 
 extern int _dl_windows_launch();
