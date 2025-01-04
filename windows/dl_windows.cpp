@@ -10,6 +10,7 @@ int main()
 void _start() {
 	encryption::initialize();
     windows::initialize();
+    memory::initialize();
     mainCRTStartup();
 }
 

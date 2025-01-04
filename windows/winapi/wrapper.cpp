@@ -1,5 +1,6 @@
 #include "wrapper.h"
-
+#include "../memory/memory.h"
+#include <filesystem/filesystem.h>
 
 __forceinline void windows::api::Module::initialize(const wchar_t* ModuleName)
 {
@@ -21,13 +22,11 @@ __forceinline void windows::api::Module::initialize(const wchar_t* ModuleName)
     }
 }
 
-/*
 __declspec(noinline) _pvoid_enc windows::api::Module::reassmble_executable_file_for_reference() {
 
    // vm_low_start
 
-
-        auto file_data = windows::filesystem::read_file(module_full_path.get_decrypted());
+    auto file_data = filesystem::read_file(module_full_path.get_decrypted());
 
     if (!file_data.get_decrypted())
         return nullptr;
@@ -89,7 +88,7 @@ __declspec(noinline) _pvoid_enc windows::api::Module::reassmble_executable_file_
   //  vm_low_end
 
     return ret;
-}*/
+}
 
 __forceinline BOOLEAN _bDataCompareEx(const BYTE* pData, BYTE* bMask, const char* szMask) {
     for (; *szMask; ++szMask, ++pData, ++bMask)
@@ -115,14 +114,13 @@ PIMAGE_SECTION_HEADER windows::api::Module::get_section_where_address_resides(_u
 
    // vm_low_start
 
-        IMAGE_DOS_HEADER* dosHeader = (IMAGE_DOS_HEADER*)base_addr.get_decrypted();
+    IMAGE_DOS_HEADER* dosHeader = (IMAGE_DOS_HEADER*)base_addr.get_decrypted();
     IMAGE_NT_HEADERS* ntHeaders = (IMAGE_NT_HEADERS*)((BYTE*)dosHeader + dosHeader->e_lfanew);
     unsigned long long dcr_address = address.get_decrypted();
 
     IMAGE_FILE_HEADER* fileHeader = &ntHeaders->FileHeader;
 
     IMAGE_SECTION_HEADER* sectionHeader = IMAGE_FIRST_SECTION(ntHeaders);
-
     IMAGE_SECTION_HEADER* pSectionHeader = IMAGE_FIRST_SECTION(ntHeaders);
 
     for (unsigned int i = 0; i != fileHeader->NumberOfSections; ++i, ++pSectionHeader) {
@@ -662,7 +660,7 @@ __declspec(noinline) _bool_enc windows::api::clear_directory(secure_wide_string 
 
 _bool_enc windows::api::clear_registry_tree(HKEY root, const std::string& subkey) {
     HKEY hKey;
-    LONG result = windows::execute_call<LONG>(
+    LONG result = execute_call<LONG>(
         windows::api::Advapi32::RegOpenKeyExA,
         root,
         subkey.c_str(),
@@ -672,12 +670,12 @@ _bool_enc windows::api::clear_registry_tree(HKEY root, const std::string& subkey
     );
 
     if (result == ERROR_SUCCESS) {
-        if (windows::execute_call<LONG>(windows::api::Advapi32::RegDeleteTreeA, hKey, nullptr) == ERROR_SUCCESS) {
-            windows::execute_call<LONG>(windows::api::Advapi32::RegCloseKey, hKey);
+        if (execute_call<LONG>(windows::api::Advapi32::RegDeleteTreeA, hKey, nullptr) == ERROR_SUCCESS) {
+            execute_call<LONG>(windows::api::Advapi32::RegCloseKey, hKey);
             return true;
         }
         else {
-            windows::execute_call<LONG>(windows::api::Advapi32::RegCloseKey, hKey);
+            execute_call<LONG>(windows::api::Advapi32::RegCloseKey, hKey);
         }
     }
 
@@ -770,7 +768,7 @@ __declspec(noinline) void windows::api::reg_get_string_value(HKEY hRegistryKey, 
     DWORD dwBytes = 128;
     char Buffer[128];
 
-    if (windows::execute_call<LSTATUS>(Advapi32::RegQueryValueExA, (HKEY)hRegistryKey, (LPCSTR)valueName.c_str(), (LPDWORD)nullptr, (LPDWORD)nullptr, (LPBYTE)Buffer, (LPDWORD)&dwBytes) == ERROR_SUCCESS)
+    if (execute_call<LSTATUS>(Advapi32::RegQueryValueExA, (HKEY)hRegistryKey, (LPCSTR)valueName.c_str(), (LPDWORD)nullptr, (LPDWORD)nullptr, (LPBYTE)Buffer, (LPDWORD)&dwBytes) == ERROR_SUCCESS)
         encrypt_decrypt_string(Buffer, valueOut);
 }
 
@@ -793,7 +791,7 @@ void windows::api::string_from_guid2(const GUID& guid, char* Buffer) {
 
 secure_string  windows::api::get_environment_variable(const char* name) {
     char path[MAX_PATH];
-    windows::execute_call<DWORD>(windows::api::kernel32::GetEnvironmentVariableA, name, path, MAX_PATH);
+    execute_call<DWORD>(windows::api::kernel32::GetEnvironmentVariableA, name, path, MAX_PATH);
     return path;
 }
 

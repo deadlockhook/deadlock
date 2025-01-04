@@ -3,6 +3,7 @@
 #include "crt/sec_vector.h"
 #include "winapi/wrapper.h"
 #include "encryption/compile_and_runtime.h"
+#include "memory/memory.h"
 
 
 extern int _dl_windows_launch();
