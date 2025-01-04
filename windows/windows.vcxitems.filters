@@ -44,6 +44,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)hooking\minhook\hde\pstdint.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)hooking\minhook\hde\table64.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)hooking\minhook\minhook.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)encryption\random.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)winapi\wrapper.cpp">

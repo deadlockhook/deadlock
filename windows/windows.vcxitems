@@ -20,6 +20,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)crt\sec_vector.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)encryption\compile_and_runtime.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)encryption\enc_string.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)encryption\random.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)filesystem\filesystem.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)global.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)hooking\minhook\hde\hde64.h" />
