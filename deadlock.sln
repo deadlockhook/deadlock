@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35431.28
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "deadlock", "deadlock\deadlock.vcxproj", "{5FAF4660-9729-4A14-8195-5005166F1237}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "windows", "windows\windows.vcxitems", "{2C3D10B0-8140-4033-A0F3-B99E226D6336}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5FAF4660-9729-4A14-8195-5005166F1237}.Debug|x64.ActiveCfg = Debug|x64
+		{5FAF4660-9729-4A14-8195-5005166F1237}.Debug|x64.Build.0 = Debug|x64
+		{5FAF4660-9729-4A14-8195-5005166F1237}.Debug|x86.ActiveCfg = Debug|Win32
+		{5FAF4660-9729-4A14-8195-5005166F1237}.Debug|x86.Build.0 = Debug|Win32
+		{5FAF4660-9729-4A14-8195-5005166F1237}.Release|x64.ActiveCfg = Release|x64
+		{5FAF4660-9729-4A14-8195-5005166F1237}.Release|x64.Build.0 = Release|x64
+		{5FAF4660-9729-4A14-8195-5005166F1237}.Release|x86.ActiveCfg = Release|Win32
+		{5FAF4660-9729-4A14-8195-5005166F1237}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {79A251A5-CFBE-49FA-A6B8-AD17B2115D6B}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		windows\windows.vcxitems*{2c3d10b0-8140-4033-a0f3-b99e226d6336}*SharedItemsImports = 9
+		windows\windows.vcxitems*{5faf4660-9729-4a14-8195-5005166f1237}*SharedItemsImports = 4
+	EndGlobalSection
+EndGlobal
