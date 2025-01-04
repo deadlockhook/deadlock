@@ -2,6 +2,7 @@
 #include "../crt/crt.h"
 #include <type_traits>
 
+//credits : https://github.com/skadro-official/skCrypter
 #define STRINGIFY(x) #x
 #define TOSTRING(x) STRINGIFY(x)
 namespace skc
