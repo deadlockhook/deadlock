@@ -14,10 +14,17 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)common.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)global.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)threading\threading.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)crt\crt.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)crt\sec_string.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)typedefs.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)crt\sec_vector.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)encryption\compile_and_runtime.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)winapi\wrapper.cpp">
       <Filter>winapi</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)threading\threading.cpp" />
   </ItemGroup>
 </Project>
