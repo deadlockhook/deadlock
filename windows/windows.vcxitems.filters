@@ -20,11 +20,18 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)typedefs.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)crt\sec_vector.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)encryption\compile_and_runtime.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)encryption\enc_string.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)memory\memory.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)winapi\wrapper.cpp">
       <Filter>winapi</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)threading\threading.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)dl_windows.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)winapi\sub_api.cpp">
+      <Filter>winapi</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)memory\memory.cpp" />
   </ItemGroup>
 </Project>

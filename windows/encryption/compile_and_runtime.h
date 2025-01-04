@@ -191,12 +191,12 @@ namespace encryption {
 
 		encrypted_block(encrypted_block<T>&& Pass)
 		{
-			windows::crt::_memcpy((void*)memory_block, (void*)Pass.memory_block, sizeof(memory_block));
+			_memcpy((void*)memory_block, (void*)Pass.memory_block, sizeof(memory_block));
 		}
 
 		encrypted_block(const encrypted_block<T>& Copy)
 		{
-			windows::crt::_memcpy((void*)memory_block, (void*)Copy.memory_block, sizeof(memory_block));
+			_memcpy((void*)memory_block, (void*)Copy.memory_block, sizeof(memory_block));
 		}
 
 		encrypted_block(const T& Create)
@@ -211,7 +211,7 @@ namespace encryption {
 
 		__forceinline void operator=(const encrypted_block<T, encryption_key>& Copy)
 		{
-			windows::crt::_memcpy((void*)memory_block, (void*)Copy.memory_block, sizeof(memory_block));
+			_memcpy((void*)memory_block, (void*)Copy.memory_block, sizeof(memory_block));
 		}
 
 		__forceinline void operator=(const T& Create)
@@ -222,7 +222,7 @@ namespace encryption {
 		__forceinline bool operator!=(const T& Right)
 		{
 			T Decrypted = get_decrypted();
-			return !windows::crt::_memequal((void*)&Decrypted, (void*)&Right, sizeof(T));
+			return !_memequal((void*)&Decrypted, (void*)&Right, sizeof(T));
 		}
 
 		__forceinline bool operator==(const T& Right)
@@ -234,7 +234,7 @@ namespace encryption {
 		{
 			T Decrypted;
 			_char MemoryBlockDcr[sizeof(T)];
-			windows::crt::_memcpy((void*)MemoryBlockDcr, (void*)memory_block, sizeof(memory_block));
+			_memcpy((void*)MemoryBlockDcr, (void*)memory_block, sizeof(memory_block));
 
 			encrypt_decrypt(MemoryBlockDcr);
 
@@ -257,7 +257,7 @@ namespace encryption {
 
 			T Decrypted;
 			_char MemoryBlockDcr[sizeof(T)];
-			windows::crt::_memcpy((void*)MemoryBlockDcr, (void*)memory_block, sizeof(memory_block));
+			_memcpy((void*)MemoryBlockDcr, (void*)memory_block, sizeof(memory_block));
 
 			size_t sizeToDecrypt = sizeof(T) - 1;
 			while (sizeToDecrypt >= 0)
@@ -277,7 +277,7 @@ namespace encryption {
 
 		__forceinline void store(const T& Copy) {
 
-			windows::crt::_memcpy((void*)memory_block, (void*)&Copy, sizeof(T));
+			_memcpy((void*)memory_block, (void*)&Copy, sizeof(T));
 
 			size_t sizeToStore = sizeof(T) - 1;
 			while (sizeToStore >= 0)

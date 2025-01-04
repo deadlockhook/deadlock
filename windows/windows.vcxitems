@@ -19,14 +19,19 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)crt\sec_string.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)crt\sec_vector.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)encryption\compile_and_runtime.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)encryption\enc_string.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)global.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)memory\memory.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)threading\threading.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)typedefs.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)winapi\winapi_structs.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)winapi\wrapper.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)dl_windows.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)memory\memory.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)threading\threading.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)winapi\sub_api.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)winapi\wrapper.cpp" />
   </ItemGroup>
 </Project>
