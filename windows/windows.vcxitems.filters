@@ -23,6 +23,19 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)encryption\enc_string.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)memory\memory.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)filesystem\filesystem.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)networking\networking.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)thirdparty\lazy_importer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)thirdparty\curl\curl.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)thirdparty\curl\curlver.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)thirdparty\curl\easy.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)thirdparty\curl\mprintf.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)thirdparty\curl\multi.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)thirdparty\curl\options.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)thirdparty\curl\stdcheaders.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)thirdparty\curl\system.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)thirdparty\curl\typecheck-gcc.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)thirdparty\curl\urlapi.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)networking\net_encrypt.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)winapi\wrapper.cpp">
@@ -35,5 +48,7 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)memory\memory.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)filesystem\filesystem.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)networking\networking.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)networking\net_encrypt.cpp" />
   </ItemGroup>
 </Project>

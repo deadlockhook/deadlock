@@ -1,11 +1,10 @@
 #define EXE
 #include "../windows/global.h"
 
-
-
 int _dl_windows_launch()
 {
-    MessageBox(NULL, L"Last", L"Hello", MB_OK);
+    auto test = memory::_malloc(0x1000);
+    std::cout << "test " << test.get_decrypted() << "\n";
     return 0;
 }
 

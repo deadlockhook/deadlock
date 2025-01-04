@@ -1,3 +1,4 @@
+#pragma once
 #include "winapi_structs.h"
 #include "../common.h"
 #include "../encryption/compile_and_runtime.h"
@@ -6,7 +7,6 @@
 #include "../crt/sec_string.h"
 #include "../encryption/enc_string.h"
 
-#pragma once
 
 namespace windows
 {

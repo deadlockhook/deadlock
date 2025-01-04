@@ -1,4 +1,6 @@
+
 #pragma once
+
 #include "../crt/crt.h"
 #include <type_traits>
 
