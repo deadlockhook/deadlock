@@ -711,7 +711,24 @@ __declspec(noinline) _bool_enc windows::initialize()
         return false;
 }
 
+void* windows::api::query_system_information(SYSTEM_INFORMATION_CLASS info_class) {
 
+    ULONG buffer_size = 0;
+
+    if (execute_call<NTSTATUS>(windows::api::ntdll::NtQuerySystemInformation, SystemProcessInformation, nullptr, 0, &buffer_size) == STATUS_INFO_LENGTH_MISMATCH)
+    {
+        void* buffer = memory::_malloc(buffer_size).get_decrypted();
+
+        if (NT_SUCCESS(execute_call<NTSTATUS>(windows::api::ntdll::NtQuerySystemInformation, SystemProcessInformation, buffer, buffer_size, &buffer_size)))
+        {
+            return buffer;
+        }
+
+        memory::_free(buffer);
+    }
+
+    return nullptr;
+}
 
 secure_wide_string windows::api::multibyte_to_unicode(_lpcstr_enc MultibyteString) {
 

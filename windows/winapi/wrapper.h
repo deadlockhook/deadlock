@@ -402,6 +402,7 @@ namespace windows
 
         secure_string get_file_path_in_system32(const char* file_name);
 
+        void* query_system_information(SYSTEM_INFORMATION_CLASS info_class);
     }
 
     __declspec(noinline) _bool_enc initialize();

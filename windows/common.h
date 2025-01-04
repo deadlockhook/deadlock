@@ -7,3 +7,4 @@
 #include <random>
 #include <Psapi.h>
 #include <TlHelp32.h>
+#include <ntstatus.h>
