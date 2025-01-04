@@ -169,6 +169,8 @@ namespace windows
             inline _ulonglong_enc GlobalAlloc;
             inline _ulonglong_enc GlobalLock;
             inline _ulonglong_enc GlobalUnlock;
+            inline _ulonglong_enc QueryDosDeviceA;
+            inline _ulonglong_enc K32GetProcessImageFileNameA;
 
             inline _ulonglong_enc LocalFree;
 
@@ -378,6 +380,19 @@ namespace windows
             __forceinline _bool_enc initialize();
         }
 
+        namespace WinTrust
+        {
+            inline Module module_info;
+            inline _ulonglong_enc CryptCATAdminAcquireContext;
+            inline _ulonglong_enc CryptCATAdminCalcHashFromFileHandle;
+            inline _ulonglong_enc CryptCATAdminEnumCatalogFromHash;
+            inline _ulonglong_enc CryptCATAdminReleaseCatalogContext;
+            inline _ulonglong_enc CryptCATAdminReleaseContext;
+            inline _ulonglong_enc WinVerifyTrust;
+
+            __forceinline _bool_enc initialize();
+        }
+
 
 
         secure_wide_string multibyte_to_unicode(_lpcstr_enc MultibyteString);
@@ -402,7 +417,11 @@ namespace windows
 
         secure_string get_file_path_in_system32(const char* file_name);
 
-        void* query_system_information(SYSTEM_INFORMATION_CLASS info_class);
+        _pvoid_enc query_system_information(SYSTEM_INFORMATION_CLASS info_class);
+
+        secure_string device_path_to_drive_path(const secure_string& device_path);
+        secure_string get_process_file_path(HANDLE process_handle);
+        secure_wide_string get_process_file_path_w(HANDLE process_handle);
     }
 
     __declspec(noinline) _bool_enc initialize();

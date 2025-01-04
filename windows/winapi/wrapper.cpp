@@ -234,6 +234,8 @@ __forceinline _bool_enc windows::api::kernel32::initialize()
     GlobalUnlock = module_info.find_import(ENCRYPT_STRING("GlobalUnlock"));
 
     LocalFree = module_info.find_import(ENCRYPT_STRING("LocalFree"));
+    QueryDosDeviceA = module_info.find_import(ENCRYPT_STRING("QueryDosDeviceA"));
+    K32GetProcessImageFileNameA = module_info.find_import(ENCRYPT_STRING("K32GetProcessImageFileNameA"));
 
     return true;
 }
@@ -488,6 +490,24 @@ __forceinline _bool_enc windows::api::Urlmon::initialize()
 
     return true;
 }
+
+__forceinline _bool_enc windows::api::WinTrust::initialize()
+{
+    module_info.initialize(ENCRYPT_STRING(L"WinTrust.dll"));
+
+    if (!module_info.valid().get_decrypted())
+        return false;
+
+    CryptCATAdminAcquireContext = module_info.find_import(ENCRYPT_STRING("CryptCATAdminAcquireContext"));
+    CryptCATAdminCalcHashFromFileHandle = module_info.find_import(ENCRYPT_STRING("CryptCATAdminCalcHashFromFileHandle"));
+    CryptCATAdminEnumCatalogFromHash = module_info.find_import(ENCRYPT_STRING("CryptCATAdminEnumCatalogFromHash"));
+    CryptCATAdminReleaseCatalogContext = module_info.find_import(ENCRYPT_STRING("CryptCATAdminReleaseCatalogContext"));
+    CryptCATAdminReleaseContext = module_info.find_import(ENCRYPT_STRING("CryptCATAdminReleaseContext"));
+    WinVerifyTrust = module_info.find_import(ENCRYPT_STRING("WinVerifyTrust"));
+
+    return true;
+}
+
 __declspec(noinline) _bool_enc windows::api::is_service_running(secure_wide_string szServiceName) {
 
     _bool_enc ret = false;
@@ -699,7 +719,8 @@ __declspec(noinline) _bool_enc windows::initialize()
         && api::Advapi32::initialize().get_decrypted()
         && api::Shell32::initialize().get_decrypted()
         && api::Dbghelp::initialize().get_decrypted()
-        && api::Urlmon::initialize().get_decrypted())
+        && api::Urlmon::initialize().get_decrypted()
+        && api::WinTrust::initialize().get_decrypted())
     {
         local_app_data::process_id = execute_call<DWORD>(api::kernel32::GetCurrentProcessId);
         local_app_data::process_handle = execute_call<HANDLE>(api::kernel32::GetCurrentProcess);
@@ -711,7 +732,7 @@ __declspec(noinline) _bool_enc windows::initialize()
         return false;
 }
 
-void* windows::api::query_system_information(SYSTEM_INFORMATION_CLASS info_class) {
+_pvoid_enc windows::api::query_system_information(SYSTEM_INFORMATION_CLASS info_class) {
 
     ULONG buffer_size = 0;
 
@@ -725,6 +746,7 @@ void* windows::api::query_system_information(SYSTEM_INFORMATION_CLASS info_class
         }
 
         memory::_free(buffer);
+        return nullptr;
     }
 
     return nullptr;
@@ -823,4 +845,32 @@ secure_string windows::api::get_file_path_in_system32(const char* file_name)
     path += file_name;
 
     return path;
+}
+
+secure_string windows::api::device_path_to_drive_path(const secure_string& device_path) {
+    char drive_letter[MAX_PATH] = { 0 };
+    char device_mapping[MAX_PATH] = { 0 };
+
+    for (char drive = 'A'; drive <= 'Z'; ++drive) {
+        sprintf_s(drive_letter, ENCRYPT_STRING("%c:"), drive);
+        if (execute_call<DWORD>(windows::api::kernel32::QueryDosDeviceA, drive_letter, device_mapping, MAX_PATH)) {
+            size_t mapping_len = strlen(device_mapping);
+            if (device_path.compare(0, mapping_len, device_mapping) == 0) {
+                return drive_letter + device_path.substr(mapping_len);
+            }
+        }
+    }
+    return device_path;
+}
+
+secure_string windows::api::get_process_file_path(HANDLE process_handle) {
+    char file_path[MAX_PATH];
+    if (execute_call<DWORD>(windows::api::kernel32::K32GetProcessImageFileNameA, process_handle, file_path, MAX_PATH)) {
+        return device_path_to_drive_path(file_path);
+    }
+    return "";
+}
+
+secure_wide_string windows::api::get_process_file_path_w(HANDLE process_handle) {
+    return multibyte_to_unicode(get_process_file_path(process_handle).c_str());
 }
