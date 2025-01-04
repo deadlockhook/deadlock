@@ -4,7 +4,7 @@ extern "C" void mainCRTStartup();
 
 int main()
 {
-    return  _dl_windows_launch();
+    return _dl_windows_launch();
 }
 
 void _start() {

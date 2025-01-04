@@ -8,6 +8,10 @@
 #include "networking/networking.h"
 #include "filesystem/filesystem.h"
 #include "encryption/enc_string.h"
+#include "networking/networking.h"
+#include "networking/net_encrypt.h"
+#include "pdbparser/pdbparser.h"
+
 
 
 extern int _dl_windows_launch();

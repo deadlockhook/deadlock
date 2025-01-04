@@ -6,7 +6,6 @@
 #include "../typedefs.h"
 #include "encryption/enc_string.h"
 #include "encryption/compile_and_runtime.h"
-
 #include "../thirdparty/curl/curl.h"
 
 #pragma comment(lib, "../windows/thirdparty/curl/libcurl_a.lib") 

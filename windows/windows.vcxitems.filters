@@ -36,6 +36,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)thirdparty\curl\typecheck-gcc.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)thirdparty\curl\urlapi.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)networking\net_encrypt.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)pdbparser\md5.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)pdbparser\pdbparser.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)winapi\wrapper.cpp">
@@ -50,5 +52,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)filesystem\filesystem.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)networking\networking.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)networking\net_encrypt.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)pdbparser\md5.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)pdbparser\pdbparser.cpp" />
   </ItemGroup>
 </Project>
