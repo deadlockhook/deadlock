@@ -139,6 +139,7 @@ _bool_enc protect_module_exports_from_hooks(windows::api::Module module)
 
 void watchdog_routines::patch_walk()
 {
+
 	protect_module_exports_from_hooks(windows::api::kernel32::module_info);
 	protect_module_exports_from_hooks(windows::api::kernelbase::module_info);
 	protect_module_exports_from_hooks(windows::api::ntdll::module_info);
