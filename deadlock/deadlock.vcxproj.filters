@@ -39,12 +39,24 @@
     <ClCompile Include="modules\memory_watch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="modules\patch_walk.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\watcher\watcher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\watcher\intercept.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="modules\routines.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="api\client_api.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="modules\watcher\intercept_and_watch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

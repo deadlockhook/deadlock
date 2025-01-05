@@ -6,6 +6,7 @@ namespace watchdog_routines {
 	void loaded_dll_watch_routine();
 	void handle_watch_routine();
 	void external_process_watch_routine();
+	void patch_walk();
 	void memory_watch();
 }
 

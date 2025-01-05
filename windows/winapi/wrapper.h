@@ -20,6 +20,8 @@ namespace windows
         __declspec(noinline) _ulonglong_enc get_module_handle(LPCWSTR lpModuleName);
         __forceinline _ulonglong_enc get_module_size(_ulonglong_enc Module);
         __declspec(noinline) _ulonglong_enc get_proc_address(_ulonglong_enc module_handle, LPCSTR proc_name, _ulonglong_enc module_size);
+
+        __declspec(noinline) _ulonglong_enc get_module_where_address_resides(_ulonglong_enc address);
     }
 }
 

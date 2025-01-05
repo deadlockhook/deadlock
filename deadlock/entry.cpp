@@ -10,6 +10,7 @@ int _dl_windows_launch() {
     SetConsoleTitleA("deadlock");
 
     threading::create_thread((threading::fn_thread_callback)watchdog_routines::watchdog, 0);
+
     return 0;
 }
 

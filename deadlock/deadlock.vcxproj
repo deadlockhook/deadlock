@@ -142,13 +142,17 @@
     <ClCompile Include="modules\external_process_watch.cpp" />
     <ClCompile Include="modules\loaded_dll_watch.cpp" />
     <ClCompile Include="modules\memory_watch.cpp" />
+    <ClCompile Include="modules\patch_walk.cpp" />
     <ClCompile Include="modules\thread_watch.cpp" />
     <ClCompile Include="modules\handle_watch.cpp" />
     <ClCompile Include="modules\watchdog.cpp" />
+    <ClCompile Include="modules\watcher\intercept.cpp" />
+    <ClCompile Include="modules\watcher\watcher.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="api\client_api.h" />
     <ClInclude Include="modules\routines.h" />
+    <ClInclude Include="modules\watcher\intercept_and_watch.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
