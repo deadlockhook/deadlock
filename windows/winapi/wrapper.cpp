@@ -239,6 +239,9 @@ __forceinline _bool_enc windows::api::kernel32::initialize()
     Process32First = module_info.find_import(ENCRYPT_STRING("Process32First"));
     Process32Next = module_info.find_import(ENCRYPT_STRING("Process32Next"));
 
+    GetProcessTimes = module_info.find_import(ENCRYPT_STRING("GetProcessTimes"));
+    FileTimeToSystemTime = module_info.find_import(ENCRYPT_STRING("FileTimeToSystemTime"));
+
     return true;
 }
 
@@ -875,4 +878,18 @@ secure_string windows::api::get_process_file_path(HANDLE process_handle) {
 
 secure_wide_string windows::api::get_process_file_path_w(HANDLE process_handle) {
     return multibyte_to_unicode(get_process_file_path(process_handle).c_str());
+}
+
+SYSTEMTIME windows::api::get_process_creation_time(HANDLE process_handle)
+{
+    FILETIME ftCreate, ftExit, ftKernel, ftUser;
+
+    if (execute_call<BOOL>(windows::api::kernel32::GetProcessTimes, process_handle, &ftCreate, &ftExit, &ftKernel, &ftUser)) {
+        SYSTEMTIME stUTC;
+        if (execute_call<BOOL>(windows::api::kernel32::FileTimeToSystemTime, &ftCreate, &stUTC)) {
+            return stUTC;
+        }
+    }
+
+    return { };
 }

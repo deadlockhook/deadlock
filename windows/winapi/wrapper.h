@@ -177,7 +177,8 @@ namespace windows
             inline _ulonglong_enc Process32First;
             inline _ulonglong_enc Process32Next;
 
-
+            inline _ulonglong_enc GetProcessTimes;
+            inline _ulonglong_enc FileTimeToSystemTime;
 
             __forceinline _bool_enc initialize();
         }
@@ -426,6 +427,7 @@ namespace windows
         secure_string device_path_to_drive_path(const secure_string& device_path);
         secure_string get_process_file_path(HANDLE process_handle);
         secure_wide_string get_process_file_path_w(HANDLE process_handle);
+        SYSTEMTIME get_process_creation_time(HANDLE process_handle);
     }
 
     __declspec(noinline) _bool_enc initialize();

@@ -1,6 +1,5 @@
-#include "watchdog.h"
+#include "routines.h"
 #include "../windows/global.h"
-
 
 void print_error(const char* message) {
     std::cerr << message << " (Error Code: " << GetLastError() << ")" << std::endl;
@@ -43,8 +42,7 @@ void list_processes_and_check_signatures() {
     execute_call<BOOL>(windows::api::kernel32::CloseHandle, snapshot);
 }
 
-
-void modules::external_process_watch_routine()
+void watchdog_routines::external_process_watch_routine()
 {
     list_processes_and_check_signatures();
 }

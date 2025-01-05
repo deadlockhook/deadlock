@@ -18,15 +18,30 @@
     <ClCompile Include="entry.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="modules\watchdog.cpp">
+    <ClCompile Include="modules\handle_watch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="modules\external_process_watch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="modules\loaded_dll_watch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\thread_watch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\watchdog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="api\client_api.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="modules\watchdog.h">
+    <ClInclude Include="modules\routines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="api\client_api.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

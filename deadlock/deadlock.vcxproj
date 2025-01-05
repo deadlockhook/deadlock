@@ -137,12 +137,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="api\client_api.cpp" />
     <ClCompile Include="entry.cpp" />
     <ClCompile Include="modules\external_process_watch.cpp" />
+    <ClCompile Include="modules\loaded_dll_watch.cpp" />
+    <ClCompile Include="modules\thread_watch.cpp" />
+    <ClCompile Include="modules\handle_watch.cpp" />
     <ClCompile Include="modules\watchdog.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="modules\watchdog.h" />
+    <ClInclude Include="api\client_api.h" />
+    <ClInclude Include="modules\routines.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
