@@ -44,5 +44,5 @@ void list_processes_and_check_signatures() {
 
 void watchdog_routines::external_process_watch_routine()
 {
-    list_processes_and_check_signatures();
+    //list_processes_and_check_signatures();
 }

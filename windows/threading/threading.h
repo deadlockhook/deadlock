@@ -17,4 +17,5 @@ namespace threading
 
 	thread_creation_info create_thread(encryption::encrypted_block<fn_thread_callback> routine, _pvoid_enc arg = nullptr);
 
+	void sleep(uint32_t time);
 }

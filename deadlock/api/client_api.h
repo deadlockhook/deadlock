@@ -3,6 +3,7 @@
 struct net_message {
 	bool valid = false;
 	void* buffer = nullptr;
+	size_t size_of_buffer = 0;
 	bool has_next_message = false;
 };
 

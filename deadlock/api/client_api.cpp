@@ -6,6 +6,7 @@ net_message get_net_send_message_buffer()
 	//handle reports
 	//connection messages
 	//timeouts
+	return net_message(0, 0, 0, 0);
 }
 
 

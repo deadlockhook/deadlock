@@ -9,3 +9,9 @@ threading::thread_creation_info threading::create_thread(encryption::encrypted_b
 	info.handle = execute_call<HANDLE>(windows::api::kernel32::CreateThread, (LPSECURITY_ATTRIBUTES)0, (SIZE_T)0, (LPTHREAD_START_ROUTINE)routine.get_decrypted(), arg.get_decrypted(), 0, &info.thread_id);
 	return info;
 }
+
+
+void  threading::sleep(uint32_t time)
+{
+	execute_call(windows::api::kernel32::Sleep, time);
+}
