@@ -60,6 +60,40 @@ __forceinline _ulonglong_enc windows::sub_functions::get_module_size(_ulonglong_
 	return (_ulonglong)nt_headers->OptionalHeader.SizeOfImage;
 }
 
+__declspec(noinline) _ulonglong_enc windows::sub_functions::get_module_handle_where_address_resides(_ulonglong_enc _address)
+{
+	PPEB peb = get_process_peb();
+
+	_ulonglong address = _address.get_decrypted();
+
+	IMAGE_DOS_HEADER* dos_header = (IMAGE_DOS_HEADER*)peb->Reserved3[1];
+	IMAGE_NT_HEADERS64* nt_headers = (IMAGE_NT_HEADERS64*)((_ulonglong)peb->Reserved3[1] + dos_header->e_lfanew);
+	
+	_ulonglong module_min_address = (_ulonglong)peb->Reserved3[1];
+	_ulonglong module_max_address = (_ulonglong)peb->Reserved3[1] + (_ulonglong)nt_headers->OptionalHeader.SizeOfImage;
+
+	if (address >= module_min_address  || address < module_max_address )
+		return (_ulonglong)peb->Reserved3[1];
+	
+	for (PLIST_ENTRY pListEntry = (PLIST_ENTRY)peb->Ldr->InMemoryOrderModuleList.Flink;
+		pListEntry != &peb->Ldr->InMemoryOrderModuleList; pListEntry = (PLIST_ENTRY)pListEntry->Flink) {
+
+		PLDR_DATA_TABLE_ENTRY pEntry = CONTAINING_RECORD(pListEntry, LDR_DATA_TABLE_ENTRY, InMemoryOrderLinks);
+		PUNICODE_STRING DllBaseName = (PUNICODE_STRING)((_ulonglong)pEntry + (_ulonglong)FIELD_OFFSET(LDR_DATA_TABLE_ENTRY, FullDllName) + sizeof(UNICODE_STRING));
+
+		 dos_header = (IMAGE_DOS_HEADER*)pEntry->DllBase;
+		 nt_headers = (IMAGE_NT_HEADERS64*)((_ulonglong)pEntry->DllBase + dos_header->e_lfanew);
+
+		 module_min_address = (_ulonglong)pEntry->DllBase;
+		 module_max_address = (_ulonglong)pEntry->DllBase + (_ulonglong)nt_headers->OptionalHeader.SizeOfImage;
+
+		 if (address >= module_min_address || address < module_max_address)
+			return (_ulonglong)pEntry->DllBase;
+	}
+
+	return 0;
+}
+
 __declspec(noinline) _ulonglong_enc windows::sub_functions::get_proc_address(_ulonglong_enc module_handle, LPCSTR proc_name, _ulonglong_enc module_size) {
 
 	//vm_low_start

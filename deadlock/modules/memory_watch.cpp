@@ -18,12 +18,23 @@ void watchdog_routines::memory_watch()
  
             encryption::encrypted_block<MEMORY_BASIC_INFORMATION> mbi_enc;
   
-            if (!memory::query_virtual_memory(current_address, mbi_enc).get_decrypted()) {
-                std::cerr << "Failed to query memory at address " << current_address << " (Error: " << GetLastError() << ")\n";
-                
+            if (!memory::query_virtual_memory(current_address, mbi_enc).get_decrypted()) 
                 break;
+            
+            MEMORY_BASIC_INFORMATION mbi = mbi_enc.get_decrypted();
+        
+            if ((mbi.Protect & PAGE_EXECUTE) ||
+                (mbi.Protect & PAGE_EXECUTE_READ) ||
+                (mbi.Protect & PAGE_EXECUTE_READWRITE) ||
+                (mbi.Protect & PAGE_EXECUTE_WRITECOPY))
+            {
+                if (!windows::sub_functions::get_module_handle_where_address_resides((uintptr_t)current_address).get_decrypted())
+                {
+                    std::cout << "[memory_watch] mapped unsigned region\n";
+
+                }
             }
-            MEMORY_BASIC_INFORMATION   mbi = mbi_enc.get_decrypted();
+
             // Print memory region details
            /*
             std::cout << "Address: " << current_address
