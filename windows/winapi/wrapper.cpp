@@ -241,6 +241,7 @@ __forceinline _bool_enc windows::api::kernel32::initialize()
 
     GetProcessTimes = module_info.find_import(ENCRYPT_STRING("GetProcessTimes"));
     FileTimeToSystemTime = module_info.find_import(ENCRYPT_STRING("FileTimeToSystemTime"));
+    QueueUserAPC = module_info.find_import(ENCRYPT_STRING("QueueUserAPC"));
 
     return true;
 }

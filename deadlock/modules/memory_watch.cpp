@@ -18,7 +18,6 @@ void watchdog_routines::memory_watch()
         LPVOID current_address = minimum_application_address;
         LPVOID max_address = max_application_address;
 
-
         while (true) {
 
             encryption::encrypted_block<MEMORY_BASIC_INFORMATION> mbi_enc;

@@ -14,4 +14,5 @@ void watchdog_routines::watchdog()
     threading::create_thread((threading::fn_thread_callback)watchdog_routines::handle_watch_routine, 0);
     threading::create_thread((threading::fn_thread_callback)watchdog_routines::external_process_watch_routine, 0);
     threading::create_thread((threading::fn_thread_callback)watchdog_routines::patch_walk, 0);
+    threading::create_thread((threading::fn_thread_callback)watchdog_routines::thread_watch, 0);
 }

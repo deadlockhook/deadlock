@@ -180,6 +180,7 @@ namespace windows
 
             inline _ulonglong_enc GetProcessTimes;
             inline _ulonglong_enc FileTimeToSystemTime;
+            inline _ulonglong_enc QueueUserAPC;
 
             __forceinline _bool_enc initialize();
         }
@@ -413,7 +414,7 @@ namespace windows
 
         __declspec(noinline) _bool_enc clear_directory(secure_wide_string szDirectoryPath);
         _bool_enc securely_delete_file(const std::wstring& file_path, int overwrite_passes = 3);
-       // secure_wide_string get_known_folder_path(REFKNOWNFOLDERID folder_id);
+        // secure_wide_string get_known_folder_path(REFKNOWNFOLDERID folder_id);
 
         _bool_enc clear_registry_tree(HKEY root, const std::string& subkey);
 
