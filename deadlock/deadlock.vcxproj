@@ -141,6 +141,7 @@
     <ClCompile Include="entry.cpp" />
     <ClCompile Include="modules\external_process_watch.cpp" />
     <ClCompile Include="modules\loaded_dll_watch.cpp" />
+    <ClCompile Include="modules\memory_watch.cpp" />
     <ClCompile Include="modules\thread_watch.cpp" />
     <ClCompile Include="modules\handle_watch.cpp" />
     <ClCompile Include="modules\watchdog.cpp" />
