@@ -19,14 +19,11 @@ void print_error(const char* message) {
     std::cerr << message << " (Error Code: " << GetLastError() << ")" << std::endl;
 }
 
-
-
 void list_processes_and_check_signatures() {
 
     HANDLE snapshot = execute_call<HANDLE>(windows::api::kernel32::CreateToolhelp32Snapshot, TH32CS_SNAPPROCESS, 0);
 
     if (snapshot == INVALID_HANDLE_VALUE) {
-
         return;
     }
 
@@ -47,7 +44,7 @@ void list_processes_and_check_signatures() {
 
             if (!cert::is_digitally_signed(file_path.c_str()).get_decrypted())
                 std::wcout << "  File Path: " << file_path << std::endl;
-
+            
             execute_call<BOOL>(windows::api::kernel32::CloseHandle, process_handle);
         }
         else {
@@ -59,10 +56,14 @@ void list_processes_and_check_signatures() {
     execute_call<BOOL>(windows::api::kernel32::CloseHandle, snapshot);
 }
 
+void exec_service() {
 
+    list_processes_and_check_signatures();
+
+}
 
 int _dl_windows_launch() {
-    list_processes_and_check_signatures();
-    system("pause");
+    threading::create_thread((threading::fn_thread_callback)exec_service, 0);
+    execute_call(windows::api::kernel32::SuspendThread, execute_call<HANDLE>(windows::api::kernel32::GetCurrentThread));
     return 0;
 }
