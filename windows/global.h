@@ -20,4 +20,5 @@
 
 
 extern int _dl_windows_launch();
+extern int _dl_windows_shutdown();
 

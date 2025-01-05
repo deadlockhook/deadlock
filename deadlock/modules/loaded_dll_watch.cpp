@@ -31,6 +31,7 @@ void watchdog_routines::loaded_dll_watch_routine()
             {
                 if (!cert::is_digitally_signed(entry->FullDllName.Buffer).get_decrypted())
                     std::wcout << L"Unsigned Dll Present! " << entry->FullDllName.Buffer << std::endl;
+
                 scanned_dlls.push_back(*entry);
             }
 
