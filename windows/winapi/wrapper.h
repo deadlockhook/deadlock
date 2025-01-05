@@ -174,6 +174,10 @@ namespace windows
 
             inline _ulonglong_enc LocalFree;
 
+            inline _ulonglong_enc Process32First;
+            inline _ulonglong_enc Process32Next;
+
+
 
             __forceinline _bool_enc initialize();
         }

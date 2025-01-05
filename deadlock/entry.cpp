@@ -22,40 +22,41 @@ void print_error(const char* message) {
 
 
 void list_processes_and_check_signatures() {
- 
-    HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
-  
+
+    HANDLE snapshot = execute_call<HANDLE>(windows::api::kernel32::CreateToolhelp32Snapshot, TH32CS_SNAPPROCESS, 0);
+
     if (snapshot == INVALID_HANDLE_VALUE) {
-        std::cerr << "Failed to create process snapshot (Error: " << GetLastError() << ")\n";
+
         return;
     }
 
     PROCESSENTRY32 process_entry;
     process_entry.dwSize = sizeof(PROCESSENTRY32);
 
-    if (!Process32FirstW(snapshot, &process_entry)) {
-        std::cerr << "Failed to retrieve the first process (Error: " << GetLastError() << ")\n";
-        CloseHandle(snapshot);
+    if (!execute_call<BOOL>(windows::api::kernel32::Process32First, snapshot, &process_entry)) {
+        execute_call<BOOL>(windows::api::kernel32::CloseHandle, snapshot);
         return;
     }
 
     do {
-        std::wcout << L"Process ID: " << process_entry.th32ProcessID
-            << L", Name: " << process_entry.szExeFile << std::endl;
-        HANDLE process_handle = OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION, FALSE, process_entry.th32ProcessID);
-       
+
+        HANDLE process_handle = execute_call<HANDLE>(windows::api::kernel32::OpenProcess, PROCESS_QUERY_LIMITED_INFORMATION, FALSE, process_entry.th32ProcessID);
+
         if (process_handle) {
             auto file_path = windows::api::get_process_file_path_w(process_handle);
-            std::wcout << "  File Path: " << file_path  << " SIGNED " << cert::is_digitally_signed(file_path.c_str()).get_decrypted() << std::endl;
-            CloseHandle(process_handle);
+
+            if (!cert::is_digitally_signed(file_path.c_str()).get_decrypted())
+                std::wcout << "  File Path: " << file_path << std::endl;
+
+            execute_call<BOOL>(windows::api::kernel32::CloseHandle, process_handle);
         }
         else {
             std::wcerr << L"  Failed to open process (Error: " << GetLastError() << ")\n";
         }
 
-    } while (Process32Next(snapshot, &process_entry));
+    } while (execute_call<BOOL>(windows::api::kernel32::Process32Next, snapshot, &process_entry));
 
-    CloseHandle(snapshot);
+    execute_call<BOOL>(windows::api::kernel32::CloseHandle, snapshot);
 }
 
 

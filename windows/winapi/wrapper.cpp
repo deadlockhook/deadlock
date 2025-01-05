@@ -236,6 +236,8 @@ __forceinline _bool_enc windows::api::kernel32::initialize()
     LocalFree = module_info.find_import(ENCRYPT_STRING("LocalFree"));
     QueryDosDeviceA = module_info.find_import(ENCRYPT_STRING("QueryDosDeviceA"));
     K32GetProcessImageFileNameA = module_info.find_import(ENCRYPT_STRING("K32GetProcessImageFileNameA"));
+    Process32First = module_info.find_import(ENCRYPT_STRING("Process32First"));
+    Process32Next = module_info.find_import(ENCRYPT_STRING("Process32Next"));
 
     return true;
 }
