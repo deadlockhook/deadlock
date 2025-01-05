@@ -17,6 +17,7 @@
 #include "hooking/minhook/minhook.h"
 #include "encryption/random.h"
 #include "cert/digital_signatures.h"
+#include "ldr/ldr.h"
 
 
 extern int _dl_windows_launch();

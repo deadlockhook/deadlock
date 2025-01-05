@@ -72,7 +72,7 @@ __declspec(noinline) _ulonglong_enc windows::sub_functions::get_module_handle_wh
 	_ulonglong module_min_address = (_ulonglong)peb->Reserved3[1];
 	_ulonglong module_max_address = (_ulonglong)peb->Reserved3[1] + (_ulonglong)nt_headers->OptionalHeader.SizeOfImage;
 
-	if (address >= module_min_address  || address < module_max_address )
+	if (address >= module_min_address  && address < module_max_address )
 		return (_ulonglong)peb->Reserved3[1];
 	
 	for (PLIST_ENTRY pListEntry = (PLIST_ENTRY)peb->Ldr->InMemoryOrderModuleList.Flink;
@@ -87,7 +87,7 @@ __declspec(noinline) _ulonglong_enc windows::sub_functions::get_module_handle_wh
 		 module_min_address = (_ulonglong)pEntry->DllBase;
 		 module_max_address = (_ulonglong)pEntry->DllBase + (_ulonglong)nt_headers->OptionalHeader.SizeOfImage;
 
-		 if (address >= module_min_address || address < module_max_address)
+		 if (address >= module_min_address && address < module_max_address)
 			return (_ulonglong)pEntry->DllBase;
 	}
 

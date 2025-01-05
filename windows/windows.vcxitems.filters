@@ -46,7 +46,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)hooking\minhook\minhook.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)encryption\random.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)cert\digital_signatures.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ldrapi\ldr.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ldr\ldr.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)winapi\wrapper.cpp">
@@ -69,6 +69,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)hooking\minhook\hook.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)hooking\minhook\trampoline.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)cert\digital_signatures.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ldrapi\ldr.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ldr\ldr.cpp" />
   </ItemGroup>
 </Project>

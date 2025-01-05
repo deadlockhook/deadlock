@@ -233,6 +233,7 @@ namespace windows
 
             inline _ulonglong_enc RtlAdjustPrivilege;
             inline _ulonglong_enc NtCreateThreadEx;
+            inline _ulonglong_enc NtQueryVirtualMemory;
 
 
             __forceinline _bool_enc initialize();

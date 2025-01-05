@@ -29,7 +29,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)hooking\minhook\hde\table64.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)hooking\minhook\minhook.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)io\json.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ldrapi\ldr.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ldr\ldr.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)memory\memory.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)networking\networking.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)networking\net_encrypt.h" />
@@ -61,7 +61,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)hooking\minhook\hook.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)hooking\minhook\trampoline.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)io\json.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ldrapi\ldr.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ldr\ldr.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)memory\memory.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)networking\networking.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)networking\net_encrypt.cpp" />

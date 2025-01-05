@@ -300,6 +300,7 @@ __forceinline _bool_enc windows::api::ntdll::initialize()
     ZwProtectVirtualMemory = module_info.find_import(ENCRYPT_STRING("ZwProtectVirtualMemory"));
     RtlAdjustPrivilege = module_info.find_import(ENCRYPT_STRING("RtlAdjustPrivilege"));
     NtCreateThreadEx = module_info.find_import(ENCRYPT_STRING("NtCreateThreadEx"));
+    NtQueryVirtualMemory = module_info.find_import(ENCRYPT_STRING("NtQueryVirtualMemory"));
 
     return true;
 }
