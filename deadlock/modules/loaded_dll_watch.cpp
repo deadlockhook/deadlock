@@ -31,6 +31,7 @@ void watchdog_routines::loaded_dll_watch_routine()
             {
                 if (!cert::is_digitally_signed(entry->FullDllName.Buffer).get_decrypted())
                 {
+                    std::wcout << "unsigned dll loaded " << entry->FullDllName.Buffer << "\n";
                     //add it to list of unsigned memory regions
                 }
 

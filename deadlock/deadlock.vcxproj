@@ -140,6 +140,7 @@
     <ClCompile Include="api\client_api.cpp" />
     <ClCompile Include="entry.cpp" />
     <ClCompile Include="modules\external_process_watch.cpp" />
+    <ClCompile Include="modules\hooks\hooks.cpp" />
     <ClCompile Include="modules\loaded_dll_watch.cpp" />
     <ClCompile Include="modules\memory_watch.cpp" />
     <ClCompile Include="modules\patch_walk.cpp" />
@@ -151,6 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="api\client_api.h" />
+    <ClInclude Include="modules\hooks\hooks.h" />
     <ClInclude Include="modules\routines.h" />
     <ClInclude Include="modules\watcher\intercept_and_watch.h" />
   </ItemGroup>
