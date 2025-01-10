@@ -28,7 +28,7 @@ void watchdog_routines::thread_watch()
                              //   std::cout << "APC queued to thread ID: " << te32.th32ThreadID << std::endl;
                             }
                             else {
-                                std::cerr << "Failed to queue APC to thread ID: " << te32.th32ThreadID
+                                 std::cerr << "Failed to queue APC to thread ID: " << te32.th32ThreadID
                                     << " (Error: " << GetLastError() << ")\n";
                             }
                             execute_call(windows::api::kernel32::CloseHandle, thread_handle);
