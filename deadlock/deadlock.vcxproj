@@ -46,11 +46,11 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -117,19 +117,44 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>RAPIDJSON_NOMEMBERITERATORCLASS;CURL_STATICLIB;NDEBUG;COREANTICHEAT_EXPORTS;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EntryPointSymbol>_start</EntryPointSymbol>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="api\client_api.cpp" />
     <ClCompile Include="entry.cpp" />
+    <ClCompile Include="modules\external_process_watch.cpp" />
+    <ClCompile Include="modules\hooks\hooks.cpp" />
+    <ClCompile Include="modules\loaded_dll_watch.cpp" />
+    <ClCompile Include="modules\memory_watch.cpp" />
+    <ClCompile Include="modules\patch_walk.cpp" />
+    <ClCompile Include="modules\thread_watch.cpp" />
+    <ClCompile Include="modules\handle_watch.cpp" />
+    <ClCompile Include="modules\watchdog.cpp" />
+    <ClCompile Include="modules\watcher\intercept.cpp" />
+    <ClCompile Include="modules\watcher\watcher.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="api\client_api.h" />
+    <ClInclude Include="modules\hooks\hooks.h" />
+    <ClInclude Include="modules\routines.h" />
+    <ClInclude Include="modules\watcher\intercept_and_watch.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

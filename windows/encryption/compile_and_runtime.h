@@ -1,7 +1,10 @@
+
 #pragma once
+
 #include "../crt/crt.h"
 #include <type_traits>
 
+//credits : https://github.com/skadro-official/skCrypter
 #define STRINGIFY(x) #x
 #define TOSTRING(x) STRINGIFY(x)
 namespace skc
@@ -190,12 +193,12 @@ namespace encryption {
 
 		encrypted_block(encrypted_block<T>&& Pass)
 		{
-			windows::crt::_memcpy((void*)memory_block, (void*)Pass.memory_block, sizeof(memory_block));
+			_memcpy((void*)memory_block, (void*)Pass.memory_block, sizeof(memory_block));
 		}
 
 		encrypted_block(const encrypted_block<T>& Copy)
 		{
-			windows::crt::_memcpy((void*)memory_block, (void*)Copy.memory_block, sizeof(memory_block));
+			_memcpy((void*)memory_block, (void*)Copy.memory_block, sizeof(memory_block));
 		}
 
 		encrypted_block(const T& Create)
@@ -210,7 +213,7 @@ namespace encryption {
 
 		__forceinline void operator=(const encrypted_block<T, encryption_key>& Copy)
 		{
-			windows::crt::_memcpy((void*)memory_block, (void*)Copy.memory_block, sizeof(memory_block));
+			_memcpy((void*)memory_block, (void*)Copy.memory_block, sizeof(memory_block));
 		}
 
 		__forceinline void operator=(const T& Create)
@@ -221,7 +224,7 @@ namespace encryption {
 		__forceinline bool operator!=(const T& Right)
 		{
 			T Decrypted = get_decrypted();
-			return !windows::crt::_memequal((void*)&Decrypted, (void*)&Right, sizeof(T));
+			return !_memequal((void*)&Decrypted, (void*)&Right, sizeof(T));
 		}
 
 		__forceinline bool operator==(const T& Right)
@@ -231,42 +234,42 @@ namespace encryption {
 
 		__forceinline T get_decrypted()
 		{
-			T Decrypted;
-			_char MemoryBlockDcr[sizeof(T)];
-			windows::crt::_memcpy((void*)MemoryBlockDcr, (void*)memory_block, sizeof(memory_block));
+			T decrypted;
+			_char memory_block_dcr[sizeof(T)];
+			_memcpy((void*)memory_block_dcr, (void*)memory_block, sizeof(memory_block));
 
-			encrypt_decrypt(MemoryBlockDcr);
+			encrypt_decrypt(memory_block_dcr);
 
-			size_t sizeToDecrypt = sizeof(T) - 1;
-			while (sizeToDecrypt >= 0)
+			size_t size_to_decrypt = sizeof(T) - 1;
+			while (size_to_decrypt >= 0)
 			{
-				((_char*)&Decrypted)[sizeToDecrypt] = ((_char*)MemoryBlockDcr)[sizeToDecrypt];
+				((_char*)&decrypted)[size_to_decrypt] = ((_char*)memory_block_dcr)[size_to_decrypt];
 
-				if (sizeToDecrypt == 0)
+				if (size_to_decrypt == 0)
 					break;
 
-				sizeToDecrypt -= 1;
+				size_to_decrypt -= 1;
 			}
 
-			return Decrypted;
+			return decrypted;
 		}
 
 		__forceinline T get_encrypted()
 		{
 
 			T Decrypted;
-			_char MemoryBlockDcr[sizeof(T)];
-			windows::crt::_memcpy((void*)MemoryBlockDcr, (void*)memory_block, sizeof(memory_block));
+			_char memory_block_dcr[sizeof(T)];
+			_memcpy((void*)memory_block_dcr, (void*)memory_block, sizeof(memory_block));
 
-			size_t sizeToDecrypt = sizeof(T) - 1;
-			while (sizeToDecrypt >= 0)
+			size_t size_to_decrypt = sizeof(T) - 1;
+			while (size_to_decrypt >= 0)
 			{
-				((_char*)&Decrypted)[sizeToDecrypt] = ((_char*)MemoryBlockDcr)[sizeToDecrypt];
+				((_char*)&Decrypted)[size_to_decrypt] = ((_char*)memory_block_dcr)[size_to_decrypt];
 
-				if (sizeToDecrypt == 0)
+				if (size_to_decrypt == 0)
 					break;
 
-				sizeToDecrypt -= 1;
+				size_to_decrypt -= 1;
 			}
 
 			return Decrypted;
@@ -276,7 +279,7 @@ namespace encryption {
 
 		__forceinline void store(const T& Copy) {
 
-			windows::crt::_memcpy((void*)memory_block, (void*)&Copy, sizeof(T));
+			_memcpy((void*)memory_block, (void*)&Copy, sizeof(T));
 
 			size_t sizeToStore = sizeof(T) - 1;
 			while (sizeToStore >= 0)
@@ -294,16 +297,16 @@ namespace encryption {
 
 		__forceinline void encrypt_decrypt(char* Mem) {
 
-			size_t sizeToEncrypt = sizeof(T) - 1;
+			size_t size_to_encrypt = sizeof(T) - 1;
 
-			while (sizeToEncrypt >= 0)
+			while (size_to_encrypt >= 0)
 			{
-				Mem[sizeToEncrypt] = Mem[sizeToEncrypt] ^ (encryption_key + ((_uchar*)&initial_xor_key)[sizeToEncrypt % 7]);
+				Mem[size_to_encrypt] = Mem[size_to_encrypt] ^ (encryption_key + ((_uchar*)&initial_xor_key)[size_to_encrypt % 7]);
 
-				if (sizeToEncrypt == 0)
+				if (size_to_encrypt == 0)
 					break;
 
-				sizeToEncrypt -= 1;
+				size_to_encrypt -= 1;
 			}
 		}
 

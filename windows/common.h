@@ -1,6 +1,10 @@
+#pragma once
 #include <Windows.h>
 #include <string>
 #include <sstream>
 #include <iostream>
-
-
+#include <winternl.h>
+#include <random>
+#include <Psapi.h>
+#include <TlHelp32.h>
+#include <ntstatus.h>
